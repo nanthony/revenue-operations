@@ -2,15 +2,47 @@
 
 <SCRIPT TYPE='text/javascript'>
   var AdX_html = '<HTML>\n' +
-    '  <HEAD>\n' +
-    '  <\/HEAD>\n' +
-    '  <BODY>\n' +
-    '    <script type=\'text\/javascript\' src=\'https:\/\/www.googletagservices.com\/tag\/js\/gpt.js\'>\n' +
-    '      googletag.pubads().collapseEmptyDivs(true);\n' +
-    '      googletag.pubads().definePassback(\'\/101482493\/DFP_Passback_300x250\', [300, 250]).display();\n' +
-    '    <\/script>\n' +
-    '  <\/BODY>\n' +
-    '<\/HTML>';
+'<HEAD>\n' +
+'  <script type=\'text\/javascript\'>\n' +
+'    var googletag = googletag || {};\n' +
+'    googletag.cmd = googletag.cmd || [];\n' +
+'    (function() {\n' +
+'      var gads = document.createElement(\'script\');\n' +
+'      gads.async = true;\n' +
+'      gads.type = \'text\/javascript\';\n' +
+'      var useSSL = \'https:\' == document.location.protocol;\n' +
+'      gads.src = (useSSL ? \'https:\' : \'http:\') +\n' +
+'        \'\/\/www.googletagservices.com\/tag\/js\/gpt.js\';\n' +
+'      var node = document.getElementsByTagName(\'script\')[0];\n' +
+'      node.parentNode.insertBefore(gads, node);\n' +
+'    })();\n' +
+'  <\/script>\n' +
+'  \n' +
+'  <script type=\'text\/javascript\'>\n' +
+'    googletag.cmd.push(function() {\n' +
+'      googletag.defineSlot(\'\/101482493\/DFP_Passback_300x250\', [300, 250], \'div-gpt-ad-1463077789672-0\').addService(googletag.pubads());\n' +
+'      googletag.pubads().enableSingleRequest();\n' +
+// '      googletag.pubads().set("page_url", parent.document.referrer);\n' + // remove google_page_url from https://www.google.com/dfp/101482493#delivery/PreviewCreative/orderId=362173573&lineItemId=461092453&creativeId=99043483573
+'      googletag.pubads().addEventListener(\'slotRenderEnded\', function(event) {\n' +
+'        if ( event.isEmpty ) {\n' +
+'          parent._an_adNoFill(\'google\');\n' +
+'        } else {\n' +
+'          parent._an_adFill(\'google\');\n' +
+'        }\n' +
+'      });\n' +
+'      googletag.enableServices();\n' +
+'    });\n' +
+'  <\/script>\n' +
+'<\/HEAD>\n' +
+'<BODY>\n' +
+'  <!-- /101482493/DFP_Passback_300x250 -->\n' +
+'  <div id=\'div-gpt-ad-1463077789672-0\' style=\'height:250px; width:300px;\'>\n' +
+'    <script type=\'text\/javascript\'>\n' +
+'      googletag.cmd.push(function() { googletag.display(\'div-gpt-ad-1463077789672-0\'); });\n' +
+'    <\/script>\n' +
+'  <\/div>\n' +
+'<\/BODY>\n' +
+'<\/HTML>';
 
   var ifm = document.createElement('iframe');
   // (ifm.frameElement || ifm).style.cssText = 'border: 0; margin: 0px auto; padding: 0; overflow: hidden; display: block;';
