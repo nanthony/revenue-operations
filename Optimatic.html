@@ -1,0 +1,62 @@
+<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center;">
+  <div>
+    <div id="flashShellDiv" style="display: inline-block;"></div>
+    <div id="shell_bucket" style="width:300px,height:250px; display: none;">
+      <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
+        <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
+      </div>
+    </div>	
+    <div style="clear: both; height: 0; overflow: hidden;"> </div>			
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var alfyad_options = {}
+  alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
+  alfyad_options['handleCompanions']=false;
+  function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
+
+  alfyad_options['on_adDuration']=alfyad_AdDuration;
+  alfyad_options['on_adComplete']=alfyad_AdCompleted;
+  alfyad_options['on_noAd']=alfyad_NoAd;
+
+  alfyad_options['alfyPObj'] = "q145a541";    //production value provided by OPTIMATIC
+  alfyad_options['alfyzone'] = "";
+  alfyad_options['eUrl'] = "";
+
+  alfyad_options['width'] = Math.min( 640, window.innerWidth || document.body.clientWidth );  // Set Width & Height values to fit your needs
+  alfyad_options['height'] = alfyad_options['width'] / 16 * 10;  // Minimum requirement is 400 x 300
+
+  alfyad_options['age'] = "";
+  alfyad_options['age_range'] = "";
+  alfyad_options['gender'] = "";
+  alfyad_options['segment'] = "";
+
+  alfyad_options['content_url'] = "[PAGE-URL]";	  // REQUIRED - populate with URL of content displayed after video ad
+
+  function alfyad_AdDuration(duration){
+    //
+  }
+  function alfyad_AdCompleted(){
+    //
+  }
+  function alfyad_NoAd(){
+    alert( "noAd" );
+    window._an_adNoFill('optimatic');
+  }
+
+  alfyad_options['on_adLoad']=alfyad_AdLoad;
+
+  function alfyad_AdLoad(){
+    alert( "ad load" );
+    window._an_adFill('optimatic');
+  }
+  function alfyad_AdStart(){
+  }
+  function alfyad_AdClick(){
+  }
+
+</script>
+
+<script type="text/javascript" src="http://cdn.optimatic.com/shell.js"></script>
