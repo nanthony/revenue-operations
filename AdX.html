@@ -1,4 +1,4 @@
-<DIV ID="AdX_placeholder"></DIV>
+<DIV ID="AdX_placeholder" STYLE="text-align: center;"></DIV>
 
 <SCRIPT TYPE='text/javascript'>
   var AdX_html = '<HTML>\n' +
@@ -46,7 +46,8 @@
 
   var ifm = document.createElement('iframe');
   // (ifm.frameElement || ifm).style.cssText = 'border: 0; margin: 0px auto; padding: 0; overflow: hidden; display: block;';
-  // ifm.setAttribute('scrolling', 'no');
+  (ifm.frameElement || ifm).style.cssText = 'border: 0;';
+  ifm.setAttribute('scrolling', 'no');
   ifm.setAttribute('width', '300px');
   ifm.setAttribute('height', '250px');
   ifm.src = 'about:blank';
