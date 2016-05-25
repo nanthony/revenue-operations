@@ -37,13 +37,13 @@
 '      googletag.pubads().enableSingleRequest();\n' +
 '      googletag.pubads().set( "page_url", parent.document.referrer || parent.document.location.href );\n' +
 '      googletag.pubads().addEventListener(\'slotRenderEnded\', function(event) {\n' +
-'        parent.track_activity( "respond", "finally", [PAGE_URL] );\n' +
+'        parent.track_activity( "respond", "finally", [PAGE-URL] );\n' +
 '        if ( event.isEmpty ) {\n' +
-'          parent.track_activity( "respond", "emptily", [PAGE_URL] );\n' +
+'          parent.track_activity( "respond", "emptily", [PAGE-URL] );\n' +
 '          parent._an_adNoFill(\'google_dfp\');\n' +
 '        } else {\n' +
 '          parent._an_adFill(\'google_dfp\');\n' +
-'          parent.track_activity( "respond", "fully", [PAGE_URL] );\n' +
+'          parent.track_activity( "respond", "fully", [PAGE-URL] );\n' +
 '        }\n' +
 '      });\n' +
 '      googletag.enableServices();\n' +
@@ -72,5 +72,5 @@
   var doc = ifm.contentWindow.document;
   doc.open().write(AdX_html);
   doc.close();
-  track_activity( "request", "initially", [PAGE_URL] );
+  track_activity( "request", "initially", "[PAGE-URL]" );
 </SCRIPT>
