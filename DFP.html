@@ -1,6 +1,19 @@
 <DIV ID="AdX_placeholder" STYLE="text-align: center;"></DIV>
 
 <SCRIPT TYPE='text/javascript'>
+
+  function loadTracker(url) {
+    var tracker = document.createElement("img");
+    tracker.src = url;
+    document.getElementsByTagName('body')[0].appendChild(tracker);
+  }
+
+  function track_activity( verb, adverb, page_URL ) {
+    var URL = '//referrer.disqus.com/juggler/event.gif?experiment=Google_DFP&variant=debug&service=static&bin=embed%3Apromoted_discovery%3Astatic%3AGoogle_DFP%3Adebug&area=top&product=embed&forum=adsnativetest&zone=thread&object_type=provider&object_id=Google_DFP&provider=Google&advertisement_id=10671&ad_product_name=iab_display&ad_product_layout=iab_display&event=activity&section=default&verb=';
+    URL = URL + verb + '&adverb=' + adverb + '&forum_id=3551233&page_url=' + encodeURIComponent(page_URL);
+    loadTracker(URL);
+  }
+
   var AdX_html = '<HTML>\n' +
 '<HEAD>\n' +
 '  <script type=\'text\/javascript\'>\n' +
@@ -24,10 +37,13 @@
 '      googletag.pubads().enableSingleRequest();\n' +
 '      googletag.pubads().set( "page_url", parent.document.referrer || parent.document.location.href );\n' +
 '      googletag.pubads().addEventListener(\'slotRenderEnded\', function(event) {\n' +
+'        parent.track_activity( "respond", "finally", [PAGE_URL] );\n' +
 '        if ( event.isEmpty ) {\n' +
+'          parent.track_activity( "respond", "emptily", [PAGE_URL] );\n' +
 '          parent._an_adNoFill(\'google_dfp\');\n' +
 '        } else {\n' +
 '          parent._an_adFill(\'google_dfp\');\n' +
+'          parent.track_activity( "respond", "fully", [PAGE_URL] );\n' +
 '        }\n' +
 '      });\n' +
 '      googletag.enableServices();\n' +
@@ -56,4 +72,5 @@
   var doc = ifm.contentWindow.document;
   doc.open().write(AdX_html);
   doc.close();
+  track_activity( "request", "initially", [PAGE_URL] );
 </SCRIPT>
