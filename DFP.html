@@ -42,7 +42,12 @@
 '          parent.track_activity( "respond", "emptily", "[PAGE-URL]" );\n' +
 '          parent._an_adNoFill(\'google_dfp\');\n' +
 '        } else {\n' +
-'          parent._an_adFill(\'google_dfp\');\n' +
+'          if ( parent._an_adFill ) {\n' +
+'            parent._an_adFill(\'google_dfp\');\n' +
+'            parent.track_activity( "respond", "together", "[PAGE-URL]" );\n' +
+'          } else {\n' +
+'            parent.track_activity( "respond", "alone", "[PAGE-URL]" );\n' +
+'          }\n' +
 '          parent.track_activity( "respond", "fully", "[PAGE-URL]" );\n' +
 '        }\n' +
 '      });\n' +
