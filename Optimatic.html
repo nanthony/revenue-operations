@@ -1,18 +1,19 @@
 <div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center;">
-  <div>
-    <div id="flashShellDiv" style="display: inline-block;"></div>
-    <div id="shell_bucket" style="width:300px,height:250px; display: none;">
-      <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
-        <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
-      </div>
-    </div>	
-    <div style="clear: both; height: 0; overflow: hidden;"> </div>			
-  </div>
+    <div>
+        <div id="flashShellDiv" style="display:none;"></div>
+        <div id="shell_bucket" style="width:300px;height:250px; display: none;">
+            <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
+                <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
+            </div>
+        </div>
+        <div style="clear: both; height: 0; overflow: hidden;"> </div>
+    </div>
 </div>
 
 <script type="text/javascript">
 
-  var alfyad_options = {}
+  var alfyad_options = {};
+
   alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
   alfyad_options['handleCompanions']=false;
   function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
@@ -34,13 +35,28 @@
   alfyad_options['segment'] = "";
 
   alfyad_options['content_url'] = "[PAGE-URL]";	  // REQUIRED - populate with URL of content displayed after video ad
+  
+  alfyad_options['default_volume']=1.0;
+  alfyad_options['toggleMuteOnHover'] = true; // (sound only when you hover over the player, default = false)
+  
+  alfyad_options['autoplay']=true;
+  alfyad_options['on_adReady']=alfyad_Ready;
+  alfyad_options['on_adStart']=alfyad_AdStart;
+  alfyad_options['on_adClick']=alfyad_AdClick;
+  alfyad_options['on_creativeLabel']=alfyad_creativeLabel;
+
+  function alfyad_Ready(){
+    // alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
+  }
 
   function alfyad_AdDuration(duration){
-    //
+    // console.log('Duration: ' + duration);
   }
+  
   function alfyad_AdCompleted(){
     //
   }
+  
   function alfyad_NoAd(){
     window._an_adNoFill('optimatic');
   }
@@ -49,11 +65,17 @@
   function alfyad_AdLoad(){
     window._an_adFill('optimatic');
   }
+
   function alfyad_AdStart(){
   }
+
   function alfyad_AdClick(){
+  }
+
+  function alfyad_creativeLabel(labelValue){
+    // console.log('Creative Label!');
   }
 
 </script>
 
-<script type="text/javascript" src="http://cdn.optimatic.com/shell.js"></script>
+<script type="text/javascript" src="http://cdn.optimatic.com/shelljs/shell.js"></script>
