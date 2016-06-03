@@ -17,6 +17,15 @@
 
   window.track_activity( "request", "initially", "[PAGE-URL]" );
 
+  var google_dfp_timeout = false;  
+  document.addEventListener(
+    "google_dfp_timeout",
+    function() {
+      var google_dfp_timeout = true;
+      window.track_activity( "timeout", "initially", "[PAGE-URL]" );
+    }
+  );
+
   var googletag = googletag || {};
   googletag.cmd = googletag.cmd || [];
   (function() {
@@ -35,7 +44,12 @@
     googletag.pubads().enableSingleRequest();
     googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-      window.track_activity( "respond", "finally", "[PAGE-URL]" );
+      if google_dfp_timeout {
+        window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
+      } else {
+        window.track_activity( "respond", "promptly", "[PAGE-URL]" );
+      }
+
       if ( event.isEmpty ) {
         window.track_activity( "respond", "emptily", "[PAGE-URL]" );
         window._an_adNoFill('google_dfp');
