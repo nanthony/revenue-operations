@@ -21,7 +21,7 @@
   document.addEventListener(
     "google_dfp_timeout",
     function() {
-      var google_dfp_timeout = true;
+      google_dfp_timeout = true;
       window.track_activity( "timeout", "initially", "[PAGE-URL]" );
     }
   );
@@ -44,7 +44,7 @@
     googletag.pubads().enableSingleRequest();
     googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-      if google_dfp_timeout {
+      if ( google_dfp_timeout ) {
         window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
       } else {
         window.track_activity( "respond", "promptly", "[PAGE-URL]" );
