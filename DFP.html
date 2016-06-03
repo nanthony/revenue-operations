@@ -1,11 +1,12 @@
-<DIV ID="AdX_placeholder" STYLE="text-align: center;"></DIV>
+<!-- /101482493/DFP_Passback_300x250 -->
+<div id="div-gpt-ad-1463077789672-0" style="height:250px; width:300px; text-align: center; margin: 0 auto;"></div>
 
 <SCRIPT TYPE='text/javascript'>
 
   function loadTracker(url) {
     var tracker = document.createElement("img");
     tracker.src = url;
-    document.getElementsByTagName('body')[0].appendChild(tracker);
+    document.body.appendChild(tracker);
   }
 
   function track_activity( verb, adverb, page_URL ) {
@@ -14,68 +15,58 @@
     loadTracker(URL);
   }
 
-  var AdX_html = '<HTML>\n' +
-'<HEAD>\n' +
-'  <script type=\'text\/javascript\'>\n' +
-'    var googletag = googletag || {};\n' +
-'    googletag.cmd = googletag.cmd || [];\n' +
-'    (function() {\n' +
-'      var gads = document.createElement(\'script\');\n' +
-'      gads.async = true;\n' +
-'      gads.type = \'text\/javascript\';\n' +
-'      var useSSL = \'https:\' == document.location.protocol;\n' +
-'      gads.src = (useSSL ? \'https:\' : \'http:\') +\n' +
-'        \'\/\/www.googletagservices.com\/tag\/js\/gpt.js\';\n' +
-'      var node = document.getElementsByTagName(\'script\')[0];\n' +
-'      node.parentNode.insertBefore(gads, node);\n' +
-'    })();\n' +
-'  <\/script>\n' +
-'  \n' +
-'  <script type=\'text\/javascript\'>\n' +
-'    googletag.cmd.push(function() {\n' +
-'      googletag.defineSlot(\'\/101482493\/DFP_Passback_300x250\', [300, 250], \'div-gpt-ad-1463077789672-0\').addService(googletag.pubads());\n' +
-'      googletag.pubads().enableSingleRequest();\n' +
-'      googletag.pubads().set( "page_url", parent.document.referrer || parent.document.location.href );\n' +
-'      googletag.pubads().addEventListener(\'slotRenderEnded\', function(event) {\n' +
-'        parent.track_activity( "respond", "finally", "[PAGE-URL]" );\n' +
-'        if ( event.isEmpty ) {\n' +
-'          parent.track_activity( "respond", "emptily", "[PAGE-URL]" );\n' +
-'          parent._an_adNoFill(\'google_dfp\');\n' +
-'        } else {\n' +
-'          if ( parent._an_adFill ) {\n' +
-'            parent._an_adFill(\'google_dfp\');\n' +
-'            parent.track_activity( "respond", "together", "[PAGE-URL]" );\n' +
-'          } else {\n' +
-'            parent.track_activity( "respond", "alone", "[PAGE-URL]" );\n' +
-'          }\n' +
-'          parent.track_activity( "respond", "fully", "[PAGE-URL]" );\n' +
-'        }\n' +
-'      });\n' +
-'      googletag.enableServices();\n' +
-'    });\n' +
-'  <\/script>\n' +
-'<\/HEAD>\n' +
-'<BODY>\n' +
-'  <!-- /101482493/DFP_Passback_300x250 -->\n' +
-'  <div id=\'div-gpt-ad-1463077789672-0\' style=\'height:250px; width:300px;\'>\n' +
-'    <script type=\'text\/javascript\'>\n' +
-'      googletag.cmd.push(function() { googletag.display(\'div-gpt-ad-1463077789672-0\'); });\n' +
-'    <\/script>\n' +
-'  <\/div>\n' +
-'<\/BODY>\n' +
-'<\/HTML>';
+  window.track_activity( "request", "initially", "[PAGE-URL]" );
 
-  var ifm = document.createElement('iframe');
-  // (ifm.frameElement || ifm).style.cssText = 'border: 0; margin: 0px auto; padding: 0; overflow: hidden; display: block;';
-  (ifm.frameElement || ifm).style.cssText = 'border: 0;';
-  ifm.setAttribute('scrolling', 'no');
-  ifm.setAttribute('width', '300px');
-  ifm.setAttribute('height', '250px');
-  ifm.src = 'about:blank';
-  ifm.id = 'AdX';
-  document.querySelector('#AdX_placeholder').appendChild(ifm);
-  var doc = ifm.contentWindow.document;
-  doc.open().write(AdX_html);
-  doc.close();
-  track_activity( "request", "initially", "[PAGE-URL]" );
+  var google_dfp_timeout = false;  
+  document.addEventListener(
+    "google_dfp_timeout",
+    function() {
+      google_dfp_timeout = true;
+      window.track_activity( "timeout", "initially", "[PAGE-URL]" );
+    }
+  );
+
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+      '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/101482493/DFP_Passback_300x250', [300, 250], 'div-gpt-ad-1463077789672-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
+    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+      if ( google_dfp_timeout ) {
+        window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
+      } else {
+        window.track_activity( "respond", "promptly", "[PAGE-URL]" );
+      }
+
+      if ( event.isEmpty ) {
+        window.track_activity( "respond", "emptily", "[PAGE-URL]" );
+        window._an_adNoFill('google_dfp');
+      } else {
+        if ( window._an_adFill ) {
+          window._an_adFill('google_dfp');
+          window.track_activity( "respond", "together", "[PAGE-URL]" );
+        } else {
+          window.track_activity( "respond", "alone", "[PAGE-URL]" );
+        }
+        window.track_activity( "respond", "fully", "[PAGE-URL]" );
+      }
+    });
+    googletag.enableServices();
+  });
+
+  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1463077789672-0'); });
+  window.track_activity( "request", "completely", "[PAGE-URL]" );
+
 </SCRIPT>
