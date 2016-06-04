@@ -1,7 +1,10 @@
-<!-- /101482493/DFP_Passback_300x250 -->
-<div id="div-gpt-ad-1463077789672-0" style="height:250px; width:300px; text-align: center; margin: 0 auto;"></div>
+<script type='text/javascript' src="https://www.googletagservices.com/tag/js/gpt.js">
 
-<SCRIPT TYPE='text/javascript'>
+  if ([TODO: check request parameter]) {
+    window._an_adNoFill('google_dfp');
+  } else {
+    window._an_adFill('google_dfp');
+  }
 
   function loadTracker(url) {
     var tracker = document.createElement("img");
@@ -15,8 +18,6 @@
     loadTracker(URL);
   }
 
-  window.track_activity( "request", "initially", "[PAGE-URL]" );
-
   var google_dfp_timeout = false;  
   document.addEventListener(
     "google_dfp_timeout",
@@ -26,47 +27,22 @@
     }
   );
 
-  var googletag = googletag || {};
-  googletag.cmd = googletag.cmd || [];
-  (function() {
-    var gads = document.createElement('script');
-    gads.async = true;
-    gads.type = 'text/javascript';
-    var useSSL = 'https:' == document.location.protocol;
-    gads.src = (useSSL ? 'https:' : 'http:') +
-      '//www.googletagservices.com/tag/js/gpt.js';
-    var node = document.getElementsByTagName('script')[0];
-    node.parentNode.insertBefore(gads, node);
-  })();
+  window.track_activity( "request", "initially", "[PAGE-URL]" );
 
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/101482493/DFP_Passback_300x250', [300, 250], 'div-gpt-ad-1463077789672-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
-    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+  googletag.pubads().collapseEmptyDivs(true);
+  googletag.pubads().definePassback('/101482493/DFP_Passback_300x250', [300, 250]).display();
+  googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
+  googletag.pubads().addEventListener(
+    'slotRenderEnded',
+    function(event) {
       if ( google_dfp_timeout ) {
         window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
       } else {
         window.track_activity( "respond", "promptly", "[PAGE-URL]" );
       }
+    }
+  );
 
-      if ( event.isEmpty ) {
-        window.track_activity( "respond", "emptily", "[PAGE-URL]" );
-        window._an_adNoFill('google_dfp');
-      } else {
-        if ( window._an_adFill ) {
-          window._an_adFill('google_dfp');
-          window.track_activity( "respond", "together", "[PAGE-URL]" );
-        } else {
-          window.track_activity( "respond", "alone", "[PAGE-URL]" );
-        }
-        window.track_activity( "respond", "fully", "[PAGE-URL]" );
-      }
-    });
-    googletag.enableServices();
-  });
-
-  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1463077789672-0'); });
   window.track_activity( "request", "completely", "[PAGE-URL]" );
 
-</SCRIPT>
+</script>
