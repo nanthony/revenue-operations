@@ -17,6 +17,14 @@
 
   window.track_activity( "request", "initially", "[PAGE-URL]" );
 
+  if ( /[?&]attempted_DFP=/.test(location.search) ) {
+    window.track_activity( "request", "abortively", "[PAGE-URL]" );
+    window._an_adNoFill('google_dfp');
+  } else {
+    window._an_adFill('google_dfp');
+    window.track_activity( "request", "productively", "[PAGE-URL]" );
+  }
+
   var google_dfp_timeout = false;  
   document.addEventListener(
     "google_dfp_timeout",
@@ -52,14 +60,12 @@
 
       if ( event.isEmpty ) {
         window.track_activity( "respond", "emptily", "[PAGE-URL]" );
-        window._an_adNoFill('google_dfp');
+
+        var anchor = document.createElement('a');
+        anchor.href = window.location.href;
+        anchor.search = window.location.search + '&attempted_DFP=';
+        window.location.href = anchor.href;
       } else {
-        if ( window._an_adFill ) {
-          window._an_adFill('google_dfp');
-          window.track_activity( "respond", "together", "[PAGE-URL]" );
-        } else {
-          window.track_activity( "respond", "alone", "[PAGE-URL]" );
-        }
         window.track_activity( "respond", "fully", "[PAGE-URL]" );
       }
     });
