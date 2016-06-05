@@ -21,6 +21,10 @@
   document.addEventListener(
     "google_dfp_timeout",
     function() {
+      var child = document.getElementById("div-gpt-ad-1463077789672-0");
+      var parent = child.parentElement;
+      parent.removeChild(child);
+
       google_dfp_timeout = true;
       window.track_activity( "timeout", "initially", "[PAGE-URL]" );
     }
@@ -44,21 +48,15 @@
     googletag.pubads().enableSingleRequest();
     googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-      if ( google_dfp_timeout ) {
-        window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
-      } else {
-        window.track_activity( "respond", "promptly", "[PAGE-URL]" );
-      }
-
       if ( event.isEmpty ) {
         window.track_activity( "respond", "emptily", "[PAGE-URL]" );
         window._an_adNoFill('google_dfp');
       } else {
-        if ( window._an_adFill ) {
+        if ( window._an_adFill && !google_dfp_timeout ) {
           window._an_adFill('google_dfp');
-          window.track_activity( "respond", "together", "[PAGE-URL]" );
+          window.track_activity( "respond", "promptly", "[PAGE-URL]" );
         } else {
-          window.track_activity( "respond", "alone", "[PAGE-URL]" );
+          window.track_activity( "respond", "belatedly", "[PAGE-URL]" );
         }
         window.track_activity( "respond", "fully", "[PAGE-URL]" );
       }
