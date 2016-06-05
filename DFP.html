@@ -20,6 +20,10 @@
   if ( /[?&]attempted_DFP=/.test(location.search) ) {
     window.track_activity( "request", "abortively", "[PAGE-URL]" );
     window._an_adNoFill('google_dfp');
+
+    var child = document.getElementById("div-gpt-ad-1463077789672-0");
+    var parent = child.parentElement;
+    parent.removeChild(child);
   } else {
     window._an_adFill('google_dfp');
     window.track_activity( "request", "productively", "[PAGE-URL]" );
