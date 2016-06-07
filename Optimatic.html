@@ -1,4 +1,4 @@
-<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center;">
+<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center; width:0; height:0">
     <div>
         <div id="flashShellDiv" style="display:none;"></div>
         <div id="shell_bucket" style="width:300px;height:250px; display: none;">
@@ -39,13 +39,17 @@
   alfyad_options['default_volume']=1.0;
   alfyad_options['toggleMuteOnHover'] = true; // (sound only when you hover over the player, default = false)
   
-  alfyad_options['autoplay']=true;
+  alfyad_options['autoplay']=false;
   alfyad_options['on_adReady']=alfyad_Ready;
   alfyad_options['on_adStart']=alfyad_AdStart;
   alfyad_options['on_adClick']=alfyad_AdClick;
   alfyad_options['on_creativeLabel']=alfyad_creativeLabel;
 
   function alfyad_Ready(){
+    var holder = document.getElementById('shell_holder');
+    holder.style.width = '';
+    holder.style.height = '';
+    alfyad_StartAd();
     // alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
   }
 
