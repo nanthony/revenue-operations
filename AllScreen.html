@@ -1,1 +1,12 @@
-<script async src="http://ads.allscreen.tv/embed?placement=110" ></script>
+<DIV ID="AllScreen"></DIV>
+
+<SCRIPT TYPE="text/javascript">
+  if (window.location.protocol == "http:") {
+    var script = document.createElement('script');
+    script.src = "http://ads.allscreen.tv/embed?placement=110";
+    document.getElementById("AllScreen").appendChild(script);
+  } else {
+    window._an_adNoFill('allscreen');
+    console.log("secured");
+  }
+</SCRIPT>
