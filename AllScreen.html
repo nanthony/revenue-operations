@@ -7,13 +7,14 @@
     var target = document.querySelector('body');
     var seen = false;
     var observer = new MutationObserver(function(mutations) {
-        var ashq_unit = document.querySelector("div[id^=ashq]");
-        if (seen && !ashq_unit) {
-            document.querySelectorAll("html")[0].style.backgroundColor = "orange";
-            observer.disconnect();
-        } else if (ashq_unit) {
-            seen = true;
-        }
+      var ashq_unit = document.querySelector("div[id^=ashq]");
+      if (seen && !ashq_unit) {
+        window.location.reload(true);
+        observer.disconnect();
+      } else if (ashq_unit) {
+        seen = true;
+        console.log( "seen = true");
+      }
     });
     observer.observe(target, { childList: true });
 
