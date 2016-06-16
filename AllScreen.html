@@ -3,6 +3,20 @@
 <SCRIPT TYPE="text/javascript">
   var destination = document.getElementById("AllScreen");
   if (window.location.protocol == "http:" && !!destination) {
+
+    var target = document.querySelector('body');
+    var seen = false;
+    var observer = new MutationObserver(function(mutations) {
+        var ashq_unit = document.querySelector("div[id^=ashq]");
+        if (seen && !ashq_unit) {
+            document.querySelectorAll("html")[0].style.backgroundColor = "orange";
+            observer.disconnect();
+        } else if (ashq_unit) {
+            seen = true;
+        }
+    });
+    observer.observe(target, { childList: true });
+
     var script = document.createElement('script');
     script.src = "http://ads.allscreen.tv/embed?placement=110";
     destination.appendChild(script);
