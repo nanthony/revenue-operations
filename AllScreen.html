@@ -8,7 +8,7 @@
     var seen = false;
     var observer = new MutationObserver(function(mutations) {
       var ashq_unit = document.querySelector("div[id^=ashq]");
-      console.log(seen && !ashq_unit);
+      console.log("mutation observed");
       if (seen && !ashq_unit) {
         console.log("post-seen");
         observer.disconnect();
