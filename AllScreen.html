@@ -8,11 +8,11 @@
     var seen = false;
     var observer = new MutationObserver(function(mutations) {
       var ashq_unit = document.querySelector("div[id^=ashq]");
-      console.log(ashq_unit);
+      console.log(seen && !ashq_unit);
       if (seen && !ashq_unit) {
         console.log("post-seen");
-        window.location.reload(true);
         observer.disconnect();
+        window.location.reload(true);
       } else if (ashq_unit) {
         seen = true;
       }
