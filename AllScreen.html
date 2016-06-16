@@ -1,12 +1,14 @@
 <DIV ID="AllScreen"></DIV>
 
 <SCRIPT TYPE="text/javascript">
-  if (window.location.protocol == "http:") {
+  var destination = document.getElementById("AllScreen");
+  if (window.location.protocol == "http:" && !!destination) {
     var script = document.createElement('script');
     script.src = "http://ads.allscreen.tv/embed?placement=110";
-    document.getElementById("AllScreen").appendChild(script);
+    destination.appendChild(script);
   } else {
-    window._an_adNoFill('allscreen');
+    // remove after testing
     console.log("secured");
+    window._an_adNoFill('allscreen');
   }
 </SCRIPT>
