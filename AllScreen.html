@@ -4,27 +4,22 @@
   var destination = document.getElementById("AllScreen");
   if (window.location.protocol == "http:" && !!destination) {
 
-    var target = document.querySelector('body');
     var seen = false;
     var observer = new MutationObserver(function(mutations) {
       var ashq_unit = document.querySelector("div[id^=ashq]");
-      console.log("mutation observed");
       if (seen && !ashq_unit) {
-        console.log("post-seen");
         observer.disconnect();
         window.location.reload(true);
       } else if (ashq_unit) {
         seen = true;
       }
     });
-    observer.observe(target, { childList: true });
+    observer.observe( destination, { childList: true });
 
     var script = document.createElement('script');
     script.src = "http://ads.allscreen.tv/embed?placement=110";
     destination.appendChild(script);
   } else {
-    // remove after testing
-    console.log("secured");
     window._an_adNoFill('allscreen');
   }
 </SCRIPT>
