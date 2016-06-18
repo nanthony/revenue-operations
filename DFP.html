@@ -46,7 +46,7 @@
   googletag.cmd.push(function() {
     googletag.defineSlot('/101482493/DFP_Passback_300x250', [300, 250], 'div-gpt-ad-1463077789672-0').addService(googletag.pubads());
     googletag.pubads().enableSingleRequest();
-    googletag.pubads().set( "page_url", window.document.referrer || window.document.location.href );
+    googletag.pubads().set( "page_url", "[PAGE-URL]" );
     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
       if ( event.isEmpty ) {
         window.track_activity( "respond", "emptily", "[PAGE-URL]" );
