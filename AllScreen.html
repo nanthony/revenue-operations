@@ -1,1 +1,25 @@
-<script async src="http://ads.allscreen.tv/embed?placement=110" ></script>
+<DIV ID="AllScreen"></DIV>
+
+<SCRIPT TYPE="text/javascript">
+  var destination = document.getElementById("AllScreen");
+  if (window.location.protocol == "http:" && !!destination) {
+
+    var seen = false;
+    var observer = new MutationObserver(function(mutations) {
+      var ashq_unit = document.querySelector("div[id^=ashq]");
+      if (seen && !ashq_unit) {
+        observer.disconnect();
+        window.location.reload(true);
+      } else if (ashq_unit) {
+        seen = true;
+      }
+    });
+    observer.observe( destination, { childList: true });
+
+    var script = document.createElement('script');
+    script.src = "http://ads.allscreen.tv/embed?placement=110";
+    destination.appendChild(script);
+  } else {
+    window._an_adNoFill('allscreen');
+  }
+</SCRIPT>
