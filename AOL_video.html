@@ -1,7 +1,31 @@
-<DIV ID="AOL_video"><P></P></DIV>
+<DIV ID="AOL_video"><P ID="to_remove">loading...</P></DIV>
+
+<SCRIPT type="text/javascript">
+  var first = true
+  window.document.addEventListener(
+    "adsnative.mrc50.view:in",
+    function(){
+      postMessage({event: "playerInView", percentageVisible: 50}, "*");
+
+      if ( first ) {
+        first = false;
+        var child = document.getElementById("to_remove");
+        var parent = child.parentElement;
+        parent.removeChild(child);
+      }
+    }
+  );
+
+  window.document.addEventListener(
+    "adsnative.mrc50.view:out",
+    function(){
+      postMessage({event: "playerInView", percentageVisible: 0}, "*");
+    }
+  );
+</SCRIPT>
 
 <!-- TAG START { player: "Outstream Demo (ad only)"} -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.selector=%23AOL_video%20p&m.position=1">
-  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js?m.o2inline=inview&m.selector=%23AOL_video%20p&m.position=1"></script>
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.selector=%23AOL_video&m.position=1">
+  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js?m.o2inline=inview&m.selector=%23AOL_video&m.position=1"></script>
 </div>
 <!-- TAG END -->
