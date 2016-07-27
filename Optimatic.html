@@ -48,15 +48,31 @@
     var holder = document.getElementById('shell_holder');
     holder.style.width = '';
     holder.style.height = '';
-    alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
+    if ( inView == true ) {
+      alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
+    } else {
+      window.document.addEventListener("adsnative.mrc50.view:in", function(){
+        alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
+      });
+    }
   }
 
   alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
   function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
 
+  var inView;
   alfyad_options['on_adLoad']=alfyad_AdLoad;
   function alfyad_AdLoad(){
+
+    window.document.addEventListener("adsnative.mrc50.view:in", function(){
+      inView = true;
+    });
+    window.document.addEventListener("adsnative.mrc50.view:out", function(){
+      inView = false;
+    });
+    
     window._an_adFill('optimatic');
+
   }
 
   alfyad_options['on_adStart']=alfyad_AdStart;
