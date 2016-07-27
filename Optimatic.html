@@ -59,13 +59,7 @@
     var holder = document.getElementById('shell_holder');
     holder.style.width = '';
     holder.style.height = '';
-    if ( inView == true ) {
-      alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
-    } else {
-      window.document.addEventListener("adsnative.mrc50.view:in", function(){
-        alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
-      });
-    }
+    alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
   }
 
   alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
