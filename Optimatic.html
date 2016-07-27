@@ -1,16 +1,24 @@
 <div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center; width:0; height:0">
-    <div>
-        <div id="flashShellDiv" style="display:none;"></div>
-        <div id="shell_bucket" style="width:300px;height:250px; display: none;">
-            <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
-                <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
-            </div>
-        </div>
-        <div style="clear: both; height: 0; overflow: hidden;"> </div>
+  <div>
+    <div id="flashShellDiv" style="display:none;"></div>
+    <div id="shell_bucket" style="width:300px;height:250px; display: none;">
+      <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
+        <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
+      </div>
     </div>
+    <div style="clear: both; height: 0; overflow: hidden;"> </div>
+  </div>
 </div>
 
 <script type="text/javascript">
+
+  var inView;
+  window.document.addEventListener("adsnative.mrc50.view:in", function(){
+    inView = true;
+  });
+  window.document.addEventListener("adsnative.mrc50.view:out", function(){
+    inView = false;
+  });
 
   var alfyad_options = {};
 
@@ -45,6 +53,9 @@
 
   alfyad_options['on_adReady']=alfyad_Ready;
   function alfyad_Ready(){
+    console.log( "Ready" );
+    console.log( "inView: " + inView );
+
     var holder = document.getElementById('shell_holder');
     holder.style.width = '';
     holder.style.height = '';
@@ -60,23 +71,17 @@
   alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
   function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
 
-  var inView;
   alfyad_options['on_adLoad']=alfyad_AdLoad;
   function alfyad_AdLoad(){
-
-    window.document.addEventListener("adsnative.mrc50.view:in", function(){
-      inView = true;
-    });
-    window.document.addEventListener("adsnative.mrc50.view:out", function(){
-      inView = false;
-    });
-    
+    console.log( "AdLoad" );
+    console.log( "inView: " + inView );
     window._an_adFill('optimatic');
-
   }
 
   alfyad_options['on_adStart']=alfyad_AdStart;
   function alfyad_AdStart(){
+    console.log( "AdStart" );
+    console.log( "inView: " + inView );
   }
 
   alfyad_options['on_adClick']=alfyad_AdClick;
