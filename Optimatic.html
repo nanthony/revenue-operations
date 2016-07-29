@@ -53,9 +53,6 @@
 
   alfyad_options['on_adReady']=alfyad_Ready;
   function alfyad_Ready(){
-    console.log( "Ready" );
-    console.log( "inView: " + inView );
-
     var holder = document.getElementById('shell_holder');
     holder.style.width = '';
     holder.style.height = '';
@@ -67,29 +64,21 @@
 
   alfyad_options['on_adLoad']=alfyad_AdLoad;
   function alfyad_AdLoad(){
-    console.log( "AdLoad" );
-    console.log( "inView: " + inView );
     window._an_adFill('optimatic');
   }
 
   alfyad_options['on_adStart']=alfyad_AdStart;
   function alfyad_AdStart(){
 
-    console.log( "AdStart" );
-    console.log( "inView: " + inView );
-    
     if ( inView == false ) {
       alfyad_PauseAd();
-      console.log( "paused" );
     }
 
     window.document.addEventListener("adsnative.mrc50.view:in", function(){
       alfyad_ResumeAd();
-      console.log( "resumed" );
     });
     window.document.addEventListener("adsnative.mrc50.view:out", function(){
       alfyad_PauseAd();
-      console.log( "paused" );
     });
 
   }
