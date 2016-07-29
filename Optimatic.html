@@ -80,13 +80,16 @@
     
     if ( inView == false ) {
       alfyad_PauseAd();
+      console.log( "paused" );
     }
 
     window.document.addEventListener("adsnative.mrc50.view:in", function(){
       alfyad_ResumeAd();
+      console.log( "resumed" );
     });
     window.document.addEventListener("adsnative.mrc50.view:out", function(){
       alfyad_PauseAd();
+      console.log( "paused" );
     });
 
   }
