@@ -74,8 +74,21 @@
 
   alfyad_options['on_adStart']=alfyad_AdStart;
   function alfyad_AdStart(){
+
     console.log( "AdStart" );
     console.log( "inView: " + inView );
+    
+    if ( inView == false ) {
+      alfyad_PauseAd();
+    }
+
+    window.document.addEventListener("adsnative.mrc50.view:in", function(){
+      alfyad_ResumeAd();
+    });
+    window.document.addEventListener("adsnative.mrc50.view:out", function(){
+      alfyad_PauseAd();
+    });
+
   }
 
   alfyad_options['on_adClick']=alfyad_AdClick;
