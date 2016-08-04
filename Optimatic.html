@@ -1,16 +1,26 @@
-<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center; width:0; height:0">
-  <div>
-    <div id="flashShellDiv" style="display:none;"></div>
-    <div id="shell_bucket" style="width:300px;height:250px; display: none;">
-      <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
-        <iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>
-      </div>
-    </div>
-    <div style="clear: both; height: 0; overflow: hidden;"> </div>
-  </div>
-</div>
-
 <script type="text/javascript">
+
+var _isSslCustom = false;
+
+if(location.protocol=='https:'){
+  _isSslCustom = true;
+   console.log("Secured Page. Not filling ads.")
+}
+if(!_isSslCustom){
+  var shell_holder = 
+  '<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center; width:0; height:0">'+
+  '<div>'+
+    '<div id="flashShellDiv" style="display:none;"></div>'+
+    '<div id="shell_bucket" style="width:300px;height:250px; display: none;">'+
+      '<div id="cb_medrect1_div" style="width: 300px; height: 250px;">'+
+        '<iframe  name="cb_medrect1_frame" id="cb_medrect1_frame" src="http://cdn.optimatic.com/iframe.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250"></iframe>'+
+      '</div>'+
+    '</div>'+
+    '<div style="clear: both; height: 0; overflow: hidden;"> </div>'+
+  '</div>'+
+  '</div>';
+  document.write(shell_holder);
+}
 
   var inView = false;
   window.document.addEventListener("adsnative.mrc50.view:in", function(){
@@ -109,7 +119,13 @@
   function alfyad_creativeLabel(labelValue){
     // console.log('Creative Label!');
   }
-
+  var shell_script = '<script type="text/javascript" src="https://cdn.optimatic.com/shelljs/shell.js"><\/script>';
+  
+  if(!_isSslCustom){
+    document.write(shell_script);
+  }
+  else{
+    alfyad_NoAd();
+  }
+  
 </script>
-
-<script type="text/javascript" src="http://cdn.optimatic.com/shelljs/shell.js"></script>
