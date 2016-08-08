@@ -16,6 +16,8 @@
   }
 
   if(location.protocol=='http:'){
+    
+    console.log( "true" );
 
     var inView = false;
     window.document.addEventListener("adsnative.mrc50.view:in", function(){
@@ -36,12 +38,12 @@
     iFrameTag.topmargin = "0";
     iFrameTag.leftmargin = "0";
     iFrameTag.allowtransparency = "true";
-    document.getElementByID("cb_medrect1_div").appendChild( iFrameTag );
+    document.getElementById("cb_medrect1_div").appendChild( iFrameTag );
 
     var scriptTag = document.createElement('script');
     scriptTag.type = 'text/javascript';
     scriptTag.src = '//cdn.optimatic.com/shelljs/shell.js';
-    insertAfter( document.getElementByID("shell_holder"), scriptTag );
+    insertAfter( document.getElementById("shell_holder"), scriptTag );
 
     // prevent error messages from logging to the browser console
     console.error = function() {}
@@ -134,6 +136,7 @@
     }
 
   } else {
+    console.log( "false" );
     window._an_adNoFill( "optimatic" );
   }
 
