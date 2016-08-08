@@ -24,7 +24,7 @@
     window.document.addEventListener("adsnative.mrc50.view:out", function(){
       inView = false;
     });
-  
+
     var iFrameTag = document.createElement('iframe');
     iFrameTag.id = 'cb_medrect1_frame';
     iFrameTag.name = iFrameTag.id;
@@ -47,36 +47,36 @@
     console.error = function() {}
 
     var alfyad_options = {};
-  
+
     // (if you want to test noAds use this value = “html5noads”)
     // to force an ad: "q145a541html53"
     alfyad_options['alfyPObj'] = "Dis491816010squ68";
     alfyad_options['alfyzone'] = "demozone";
-  
+
     alfyad_options['age'] = 43;
     alfyad_options['age_range'] = "35-44";
     alfyad_options['gender'] = 1;
     alfyad_options['segment'] = "segment";
-  
+
     page_URL = window.document.referrer || window.document.location.href;
     alfyad_options['content_url'] = page_URL;	  // REQUIRED - populate with URL of content displayed after video ad
-  
+
     alfyad_options['audience_segment'] = "audience_segment1";
     alfyad_options['cardname'] = "cardname1";
     alfyad_options['custom1'] = "customa11";
     alfyad_options['custom2'] = "custom22";
     alfyad_options['custom3'] = "custom33";
-  
+
     alfyad_options['default_volume']=1.0;
     alfyad_options['toggleMuteOnHover'] = true; // (sound only when you hover over the player, default = false)
-    
+
     alfyad_options['width'] = Math.min( 640, window.innerWidth || document.body.clientWidth );  // Set Width & Height values to fit your needs
     alfyad_options['height'] = alfyad_options['width'] / 16 * 10;  // Minimum requirement is 400 x 300
-  
+
     alfyad_options['handleCompanions']=false;
-  
+
     alfyad_options['autoplay']=false;
-  
+
     alfyad_options['on_adReady']=alfyad_Ready;
     function alfyad_Ready(){
       var holder = document.getElementById('shell_holder');
@@ -84,57 +84,57 @@
       holder.style.height = '';
       alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
     }
-  
+
     alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
     function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
-  
+
     alfyad_options['on_adLoad']=alfyad_AdLoad;
     function alfyad_AdLoad(){
       window._an_adFill('optimatic');
     }
-  
+
     alfyad_options['on_adStart']=alfyad_AdStart;
     function alfyad_AdStart(){
-  
+
       if ( inView == false ) {
         alfyad_PauseAd();
       }
-  
+
       window.document.addEventListener("adsnative.mrc50.view:in", function(){
         alfyad_ResumeAd();
       });
       window.document.addEventListener("adsnative.mrc50.view:out", function(){
         alfyad_PauseAd();
       });
-  
+
     }
-  
+
     alfyad_options['on_adClick']=alfyad_AdClick;
     function alfyad_AdClick(){
     }
-  
+
     alfyad_options['on_adDuration']=alfyad_AdDuration;
     function alfyad_AdDuration(duration){
       // console.log('Duration: ' + duration);
     }
-  
+
     alfyad_options['on_adComplete']=alfyad_AdCompleted;
     function alfyad_AdCompleted(){
       window.location.reload(true);
     }
-    
+
     alfyad_options['on_noAd']=alfyad_NoAd;
     function alfyad_NoAd(){
       window._an_adNoFill('optimatic');
     }
-  
+
     alfyad_options['on_creativeLabel']=alfyad_creativeLabel;
     function alfyad_creativeLabel(labelValue){
       // console.log('Creative Label!');
     }
- 
-	} else {
-	  window._an_adNoFill( "optimatic" );
-	}
+
+  } else {
+    window._an_adNoFill( "optimatic" );
+  }
 
 </script>
