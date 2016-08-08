@@ -16,8 +16,6 @@
   }
 
   if(location.protocol=='http:'){
-    
-    console.log( "true" );
 
     var inView = false;
     window.document.addEventListener("adsnative.mrc50.view:in", function(){
@@ -136,7 +134,6 @@
     }
 
   } else {
-    console.log( "false" );
     window._an_adNoFill( "optimatic" );
   }
 
