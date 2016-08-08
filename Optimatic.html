@@ -36,12 +36,12 @@
     iFrameTag.topmargin = "0";
     iFrameTag.leftmargin = "0";
     iFrameTag.allowtransparency = "true";
-    document.getElementsByID("cb_medrect1_div").appendChild( iFrameTag );
+    document.getElementByID("cb_medrect1_div").appendChild( iFrameTag );
 
     var scriptTag = document.createElement('script');
     scriptTag.type = 'text/javascript';
     scriptTag.src = '//cdn.optimatic.com/shelljs/shell.js';
-    insertAfter( document.getElementsByID("shell_holder"), scriptTag );
+    insertAfter( document.getElementByID("shell_holder"), scriptTag );
 
     // prevent error messages from logging to the browser console
     console.error = function() {}
