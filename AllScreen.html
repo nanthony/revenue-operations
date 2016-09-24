@@ -1,15 +1,18 @@
 <DIV ID="AllScreen"></DIV>
 
 <SCRIPT TYPE="text/javascript">
+
   var destination = document.getElementById("AllScreen");
-  if (window.location.protocol == "http:" && !!destination) {
-    
+  var _unsecured = window.location.protocol == "http:";
+
+  if ( _unsecured && !!destination ) {
+
     function loadTracker(url) {
       var tracker = document.createElement("img");
       tracker.src = url;
       document.body.appendChild(tracker);
     }
-    
+
     function track_activity( verb, adverb, page_URL ) {
       var URL = '//referrer.disqus.com/juggler/event.gif?experiment=AllScreen&variant=debug&service=static&bin=embed%3Apromoted_discovery%3Astatic%3AAllScreen%3Adebug&area=top&product=embed&forum=adsnativetest&zone=thread&object_type=provider&object_id=AllScreen&provider=AllScreen&advertisement_id=11058&ad_product_name=video&ad_product_layout=video&event=activity&section=default&verb=';
       URL = URL + verb + '&adverb=' + adverb + '&forum_id=3551233&page_url=' + encodeURIComponent(page_URL);
