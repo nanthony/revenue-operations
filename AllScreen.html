@@ -4,8 +4,9 @@
 
   var destination = document.getElementById("AllScreen");
   var _unsecured = window.location.protocol == "http:";
+  var _isNotSafari = ( navigator.userAgent.indexOf('Safari') == -1 || navigator.userAgent.indexOf('Chrome') != -1 );
 
-  if ( _unsecured && !!destination ) {
+  if ( _unsecured && _isNotSafari && !!destination ) {
 
     function loadTracker(url) {
       var tracker = document.createElement("img");
