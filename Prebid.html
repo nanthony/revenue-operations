@@ -41,6 +41,10 @@
 
   var pbjs = pbjs || {};
   pbjs.que = pbjs.que || [];
+  
+  pbjs.que.push( function() {
+    pbjs.setPriceGranularity("auto");
+  } );
 
 </SCRIPT>
 <!-- Prebid Config Section END -->
