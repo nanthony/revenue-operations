@@ -44,8 +44,11 @@
   })();
 
   googletag.cmd.push(function() {
-    googletag.defineSlot('/101482493/DFP_Passback_300x250', [300, 250], 'div-gpt-ad-1463077789672-0').addService(googletag.pubads());
+    var pubads = googletag.pubads();
+    googletag.defineSlot('/101482493/DFP_Passback_300x250', [300, 250], 'div-gpt-ad-1463077789672-0').addService(pubads);
     googletag.pubads().enableSingleRequest();
+    pubads.disableInitialLoad();
+    pubads.collapseEmptyDivs(true);
     googletag.pubads().set( "page_url", decodeURIComponent( "[PAGE-URL]".split( "%23" )[0] ) );
     googletag.pubads().addEventListener('slotRenderEnded', function(event) {
       if ( event.isEmpty ) {
