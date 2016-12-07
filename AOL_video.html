@@ -34,12 +34,26 @@
     function getPlayer (e) {
       player = e;
       player.addEventListener(vidible.CONTEXT_ENDED, reloadAdIFrame);
-    };
+    }
+
+    function updateQueryStringParameter(uri, key, value) {
+      var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+      if (uri.match(re)) {
+        return uri.replace(re, '$1' + key + "=" + value + '$2');
+      }
+      else {
+        return uri + separator + key + "=" + value;
+      }
+    }
 
     function reloadAdIFrame (e) {
-      event = e;
-      console.log(event);
-    };
+//       event = e;
+      var anchor = document.createElement('a');
+      anchor.href = window.location.href;
+      anchor.search = updateQueryStringParameter( window.location.search, "video_allowed", 0 );
+      window.location.href = anchor.href;
+    }
   </script>
 </div>
 <!-- TAG END -->
