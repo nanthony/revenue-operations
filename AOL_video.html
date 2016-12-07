@@ -56,7 +56,7 @@
       // remove query parameter forcing campaign, if present
       var re = new RegExp("([?&])" + "cid" + "=.*?(&|$)", "i");
       if ( anchor.search.match(re) ) {
-        return anchor.search.replace(re, '$1' + '$2');
+        anchor.search = anchor.search.replace(re, '$1' + '$2');
       }
 
       window.location.href = anchor.href;
