@@ -1,4 +1,4 @@
-<DIV ID="AOL_video"><P ID="to_remove">loading...</P></DIV>
+<DIV ID="to_remove" style="height: 360px;">ad loading...</DIV>
 
 <SCRIPT type="text/javascript">
   var first = true
@@ -25,34 +25,18 @@
 </SCRIPT>
 
 <!-- TAG START { player: "Outstream Demo (ad only)"} -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.selector=%23AOL_video&m.position=1&m.onLoad=getPlayer">
-  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js?m.o2inline=inview&m.selector=%23AOL_video&m.position=1&m.onLoad=getPlayer"></script>
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.onLoad=getPlayer">
+  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js?m.o2inline=inview&m.onLoad=getPlayer"></script>
   <script>
     var player;
     var event;
 
     function getPlayer (e) {
       player = e;
-      player.addEventListener(vidible.PLAYER_READY, yourFunction)
-      player.addEventListener(vidible.VIDEO_DATA_LOADED, yourFunction)
-      player.addEventListener(vidible.CONTEXT_STARTED, yourFunction)
-      player.addEventListener(vidible.VIDEO_START, yourFunction)
-      player.addEventListener(vidible.VIDEO_PAUSE, yourFunction)
-      player.addEventListener(vidible.VIDEO_PLAY, yourFunction)
-      player.addEventListener(vidible.VIDEO_SELECTED, yourFunction)
-      player.addEventListener(vidible.VIDEO_SEEKEND, yourFunction)
-      player.addEventListener(vidible.VIDEO_VOLUME_CHANGED, yourFunction)
-      player.addEventListener(vidible.VIDEO_TIMEUPDATE, yourFunction)
-      player.addEventListener(vidible.VIDEO_END, yourFunction)
-      player.addEventListener(vidible.PLAYLIST_END, yourFunction)
-      player.addEventListener(vidible.VIDEO_META, yourFunction)
-      player.addEventListener(vidible.AD_START, yourFunction)
-      player.addEventListener(vidible.AD_END, yourFunction)
-      player.addEventListener(vidible.AD_META, yourFunction)
-      player.addEventListener(vidible.CONTEXT_ENDED, yourFunction)
+      player.addEventListener(vidible.CONTEXT_ENDED, reloadAdIFrame);
     };
 
-    function yourFunction (e) {
+    function reloadAdIFrame (e) {
       event = e;
       console.log(event);
     };
