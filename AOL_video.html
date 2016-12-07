@@ -52,6 +52,13 @@
       var anchor = document.createElement('a');
       anchor.href = window.location.href;
       anchor.search = updateQueryStringParameter( window.location.search, "video_allowed", 0 );
+
+      // remove query parameter forcing campaign, if present
+      var re = new RegExp("([?&])" + "cid" + "=.*?(&|$)", "i");
+      if ( anchor.search.match(re) ) {
+        return anchor.search.replace(re, '$1' + '$2');
+      }
+
       window.location.href = anchor.href;
     }
   </script>
