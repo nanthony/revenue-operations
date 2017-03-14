@@ -1,16 +1,7 @@
-<div id="shell_holder" style="position: relative; margin: 0 auto; overflow: hidden; text-align: center; width:0; height:0">
-  <div>
-    <div id="flashShellDiv" style="display:none;"></div>
-    <div id="shell_bucket" style="width:300px;height:250px; display: none;">
-      <div id="cb_medrect1_div" style="width: 300px; height: 250px;">
-      </div>
-    </div>
-    <div style="clear: both; height: 0; overflow: hidden;"> </div>
-  </div>
-</div>
+<div id="opti-wrapper" style="position:relative; overflow:hidden; width:0; height:0">
 
-<script type="text/javascript">
-
+<!-- callbacks -->
+<script>
   function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
@@ -25,77 +16,31 @@
       inView = false;
     });
 
-    var iFrameTag = document.createElement('iframe');
-    iFrameTag.id = 'cb_medrect1_frame';
-    iFrameTag.name = iFrameTag.id;
-    iFrameTag.src = '//cdn.optimatic.com/iframe.html';
-    iFrameTag.frameborder = "0";
-    iFrameTag.scrolling = "no";
-    iFrameTag.marginwidth = "0";
-    iFrameTag.marginheight = "0";
-    iFrameTag.topmargin = "0";
-    iFrameTag.leftmargin = "0";
-    iFrameTag.allowtransparency = "true";
-    document.getElementById("cb_medrect1_div").appendChild( iFrameTag );
-
-    var scriptTag = document.createElement('script');
-    scriptTag.type = 'text/javascript';
-    scriptTag.src = '//cdn.optimatic.com/shelljs/shell.js';
-    insertAfter( document.getElementById("shell_holder"), scriptTag );
-
     // prevent error messages from logging to the browser console
-    console.error = function() {}
+//     console.error = function() {}
 
     var alfyad_options = {};
-
-    // (if you want to test noAds use this value = “html5noads”)
-    // to force an ad: "q145a541html53"
-    alfyad_options['alfyPObj'] = "Dis491816010squ68";
-    alfyad_options['alfyzone'] = "demozone";
-
-    alfyad_options['age'] = 43;
-    alfyad_options['age_range'] = "35-44";
-    alfyad_options['gender'] = 1;
-    alfyad_options['segment'] = "segment";
 
     page_URL = window.document.referrer || window.document.location.href;
     alfyad_options['content_url'] = page_URL;	  // REQUIRED - populate with URL of content displayed after video ad
 
-    alfyad_options['audience_segment'] = "audience_segment1";
-    alfyad_options['cardname'] = "cardname1";
-    alfyad_options['custom1'] = "customa11";
-    alfyad_options['custom2'] = "custom22";
-    alfyad_options['custom3'] = "custom33";
-
-    alfyad_options['default_volume']=1.0;
     alfyad_options['toggleMuteOnHover'] = true; // (sound only when you hover over the player, default = false)
 
     alfyad_options['width'] = Math.min( 640, window.innerWidth || document.body.clientWidth );  // Set Width & Height values to fit your needs
     alfyad_options['height'] = alfyad_options['width'] / 16 * 10;  // Minimum requirement is 400 x 300
 
-    alfyad_options['handleCompanions']=false;
-
     alfyad_options['autoplay']=false;
 
-    alfyad_options['on_adReady']=alfyad_Ready;
-    function alfyad_Ready(){
-      var holder = document.getElementById('shell_holder');
-      holder.style.width = '';
-      holder.style.height = '';
-      alfyad_StartAd();  //if autoplay is false… you must call this when player is ready…
-    }
+    _opti_AdLoad = function () {
+    //            console.log('>>>>> Ad Loaded');
+        window._an_adFill('optimatic');
+        var holder = document.getElementById('opti-wrapper');
+        holder.style.width = '';
+        holder.style.height = '';
+    };
 
-    alfyad_options['on_playerAvailable']=alfyad_AttachPlayer;
-    function alfyad_AttachPlayer(){alfyad_CreatePlayer();}
-
-    alfyad_options['on_adLoad']=alfyad_AdLoad;
-    function alfyad_AdLoad(){
-      window._an_adFill('optimatic');
-    }
-
-    alfyad_options['on_adStart']=alfyad_AdStart;
-    function alfyad_AdStart(){
-
+    _opti_AdStart = function (duration) {
+//            console.log('>>>>> Ad Started >>>> duration: ' + duration);
       if ( inView == false ) {
         alfyad_PauseAd();
       }
@@ -106,35 +51,28 @@
       window.document.addEventListener("adsnative.mrc50.view:out", function(){
         alfyad_PauseAd();
       });
+    };  
 
-    }
+    _opti_AdClick = function () {
+//            console.log('>>>>>> Ad Clicked!');
+    };
 
-    alfyad_options['on_adClick']=alfyad_AdClick;
-    function alfyad_AdClick(){
-    }
-
-    alfyad_options['on_adDuration']=alfyad_AdDuration;
-    function alfyad_AdDuration(duration){
-      // console.log('Duration: ' + duration);
-    }
-
-    alfyad_options['on_adComplete']=alfyad_AdCompleted;
-    function alfyad_AdCompleted(){
+    _opti_AdComplete = function () {
+//            console.log('>>>>>> Ad Completed!');
       window.location.reload(true);
-    }
+      optiplayer.remove();
+    };
 
-    alfyad_options['on_noAd']=alfyad_NoAd;
-    function alfyad_NoAd(){
+    _opti_NoAds = function () {
+//            console.log('>>>>> No Ads Found!');
+      optiplayer.remove();
       window._an_adNoFill('optimatic');
-    }
-
-    alfyad_options['on_creativeLabel']=alfyad_creativeLabel;
-    function alfyad_creativeLabel(labelValue){
-      // console.log('Creative Label!');
-    }
-
+    };
   } else {
     window._an_adNoFill( "optimatic" );
   }
 
 </script>
+  
+  <div id="opti-player"><script>document.write('<scr'+'ipt type="text/javascript" src="//cdn.optimatic.com/redux/optiplayer.js?id=Dis491816010squ68&width=640&height=460&zone=demozone&auto=true&age=43&age_range=35-44&gender=1&segment=segment&audience_segment=audience_segment1&cb='+ Math.round(new Date() /1000)+'"></scr' + 'ipt>');</script></div>
+</div>
