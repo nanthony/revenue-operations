@@ -2,71 +2,28 @@
 
 <!-- callbacks -->
 <script>
-  function insertAfter(referenceNode, newNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-  }
-
-  var inView = false;
-  window.document.addEventListener("adsnative.mrc50.view:in", function(){
-    inView = true;
-  });
-  window.document.addEventListener("adsnative.mrc50.view:out", function(){
-    inView = false;
-  });
-
-  // prevent error messages from logging to the browser console
-//     console.error = function() {}
-
-//   var alfyad_options = {};
-
-//   page_URL = window.document.referrer || window.document.location.href;
-//   alfyad_options['content_url'] = page_URL;	  // REQUIRED - populate with URL of content displayed after video ad
-
-//   alfyad_options['toggleMuteOnHover'] = true; // (sound only when you hover over the player, default = false)
-
-//   alfyad_options['width'] = Math.min( 640, window.innerWidth || document.body.clientWidth );  // Set Width & Height values to fit your needs
-//   alfyad_options['height'] = alfyad_options['width'] / 16 * 10;  // Minimum requirement is 400 x 300
-
-//   alfyad_options['autoplay']=false;
-
   _opti_AdLoad = function () {
-  //            console.log('>>>>> Ad Loaded');
-      window._an_adFill('optimatic');
-      var holder = document.getElementById('opti-wrapper');
-      holder.style.width = '';
-      holder.style.height = '';
   };
 
   _opti_AdStart = function (duration) {
-//            console.log('>>>>> Ad Started >>>> duration: ' + duration);
-    if ( inView == false ) {
-      alfyad_PauseAd();
-    }
-
-    window.document.addEventListener("adsnative.mrc50.view:in", function(){
-      alfyad_ResumeAd();
-    });
-    window.document.addEventListener("adsnative.mrc50.view:out", function(){
-      alfyad_PauseAd();
-    });
+    window._an_adFill('optimatic');
+    var holder = document.getElementById('opti-wrapper');
+    holder.style.width = '';
+    holder.style.height = '';
   };  
 
   _opti_AdClick = function () {
-//            console.log('>>>>>> Ad Clicked!');
   };
 
   _opti_AdComplete = function () {
-//            console.log('>>>>>> Ad Completed!');
-    window.location.reload(true);
     optiplayer.remove();
+    window.location.reload(true);
   };
 
   _opti_NoAds = function () {
-//            console.log('>>>>> No Ads Found!');
     optiplayer.remove();
     window._an_adNoFill('optimatic');
   };
-
 </script>
   
   <div id="opti-player"></div>
@@ -74,6 +31,7 @@
   <SCRIPT>
     var script = document.createElement('script');
     script.src = "//cdn.optimatic.com/redux/optiplayer.js?id=Dis491816010squ68&width=640&height=460&zone=demozone&auto=true&age=43&age_range=35-44&gender=1&segment=segment&audience_segment=audience_segment1&cb=" + Math.round(new Date() /1000);
+    // script.src = "//cdn.optimatic.com/redux/optiplayer.js?id=q145a541html52&debug=true&width=640&height=460&zone=demozone&auto=true&age=43&age_range=35-44&gender=1&segment=segment&audience_segment=audience_segment1&cb=" + Math.round(new Date() /1000);
     document.getElementById('opti-player').appendChild(script);
   </SCRIPT>
 </div>
